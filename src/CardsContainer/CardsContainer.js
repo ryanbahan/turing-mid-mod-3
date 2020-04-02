@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import './CardsContainer.css';
 
 class CardsContainer extends Component {
-  
+
   displayCards() {
     return this.props.cards.map(card => {
       return <Card
@@ -13,6 +13,7 @@ class CardsContainer extends Component {
                 date={card.date}
                 time={card.time}
                 number={card.number}
+                handleDelete={this.props.handleDelete}
               />
     })
   }

@@ -36,6 +36,25 @@ class App extends Component {
     .then(data => console.log(data))
   }
 
+  handleDelete = (id) => {
+    const updatedCards = this.state.cards.filter(card => card.id !== id);
+    this.setState({cards: updatedCards});
+    this.deleteReservation(id)
+  }
+
+  deleteReservation = (id) => {
+    const data = JSON.stringify(id);
+
+    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+
   render() {
     return (
       <div className="App">
@@ -46,7 +65,10 @@ class App extends Component {
           />
         </div>
         <div className='resy-container'>
-          <CardsContainer cards={this.state.cards}/>
+          <CardsContainer
+            cards={this.state.cards}
+            handleDelete={this.handleDelete}
+          />
         </div>
       </div>
     )

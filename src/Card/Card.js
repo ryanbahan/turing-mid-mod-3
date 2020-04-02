@@ -7,7 +7,7 @@ function Card(props) {
     <p>{props.date}</p>
     <p>{props.time}</p>
     <p>Number of guests: {props.number}</p>
-    <button>Cancel</button>
+    <button onClick={() => props.handleDelete(props.id)}>Cancel</button>
   </section>
 }
 
