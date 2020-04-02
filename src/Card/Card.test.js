@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Card from './Card'
 
@@ -14,6 +14,10 @@ describe("Card", () => {
         time="1:30"
         number="5"
       />)
+  })
+
+  afterEach(() => {
+    cleanup
   })
 
   it("Should have the correct name", () => {
