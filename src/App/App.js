@@ -19,6 +19,21 @@ class App extends Component {
 
   handleSubmit = (card) => {
     this.setState({cards: [...this.state.cards, card]})
+    this.postNewReservation(card)
+  }
+
+  postNewReservation = (card) => {
+    const data = JSON.stringify(card);
+
+    fetch("http://localhost:3001/api/v1/reservations", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+        },
+      body: data
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
   }
 
   render() {
