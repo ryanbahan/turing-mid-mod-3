@@ -17,12 +17,19 @@ class App extends Component {
     .then(data => this.setState({cards: data}))
   }
 
+  handleSubmit = (card) => {
+    this.setState({cards: [...this.state.cards, card]})
+    console.log(card);
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-          <Form />
+          <Form
+            handleSubmit={this.handleSubmit}
+          />
         </div>
         <div className='resy-container'>
           <CardsContainer cards={this.state.cards}/>
