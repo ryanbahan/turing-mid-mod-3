@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardsContainer from '../CardsContainer/CardsContainer';
 import Form from '../Form/Form';
 import './App.css';
+import { postNewReservation, deleteReservation } from '../utils';
 
 class App extends Component {
   constructor() {
@@ -19,40 +20,13 @@ class App extends Component {
 
   handleSubmit = (card) => {
     this.setState({cards: [...this.state.cards, card]})
-    this.postNewReservation(card)
-  }
-
-  postNewReservation = (card) => {
-    const data = JSON.stringify(card);
-
-    fetch("http://localhost:3001/api/v1/reservations", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-        },
-      body: data
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    postNewReservation(card)
   }
 
   handleDelete = (id) => {
     const updatedCards = this.state.cards.filter(card => card.id !== id);
     this.setState({cards: updatedCards});
-    this.deleteReservation(id)
-  }
-
-  deleteReservation = (id) => {
-    const data = JSON.stringify(id);
-
-    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json'
-        }
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    deleteReservation(id)
   }
 
   render() {
