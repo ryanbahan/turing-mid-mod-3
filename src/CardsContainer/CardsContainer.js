@@ -3,6 +3,7 @@ import Card from '../Card/Card';
 import './CardsContainer.css';
 
 class CardsContainer extends Component {
+  
   displayCards() {
     return this.props.cards.map(card => {
       return <Card
