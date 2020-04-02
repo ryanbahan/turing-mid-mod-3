@@ -1,15 +1,19 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Form from './Form'
 
-describe("Form", () => {
+describe("Form initial values", () => {
 let utils;
 
   beforeEach(() => {
     utils = render(
       <Form />
     )
+  })
+
+  afterEach(() => {
+    cleanup
   })
 
   it("Should have a name field", () => {
@@ -47,4 +51,23 @@ let utils;
     expect(button).toBeInTheDocument();
   })
 
+})
+
+describe("Form event testing", () => {
+  let utils;
+
+    beforeEach(() => {
+      utils = render(
+        <Form />
+      )
+    })
+
+    afterEach(() => {
+      cleanup
+    })
+
+    it("Should update name field on user input", () => {
+
+    })
+    
 })
