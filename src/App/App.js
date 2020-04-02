@@ -19,7 +19,6 @@ class App extends Component {
 
   handleSubmit = (card) => {
     this.setState({cards: [...this.state.cards, card]})
-    console.log(card);
   }
 
   render() {
